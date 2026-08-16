@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rooms · OXYGEN HOTEL</title>
+  <title>OXYGEN HOTEL · Rooms & Suites</title>
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="z1.jpg">
@@ -16,7 +16,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
   <style>
+    /* ---------- Reset & Variables ---------- */
     :root {
       --areia: #D3C7AD;
       --azul: #28374A;
@@ -25,43 +29,24 @@
       --ocean-deep: #5D768B;
       --warm-sand: #C8B39B;
       --ivory: #F8EFE5;
-
-      --blueberry: var(--azul);
       --berrybloom: var(--ocean-deep);
       --stemgrey: #6E6F73;
       --yogurttint: var(--warm-sand);
       --platewhite: var(--ivory);
-
-      --accent-berry: #7B8AA8;
-      --glow-amber: #C9A87C;
-
       --bg-obsidian: #11141C;
       --bg-surface: #1B1F2A;
-      --bg-sand: var(--yogurttint);
-      --bg-card-light: var(--platewhite);
-      --text-dark: #1C1F28;
-      --text-muted: #949AA8;
       --text-light: #F0F2F5;
-
+      --text-muted: #949AA8;
       --font-serif: 'Cormorant Garamond', Georgia, serif;
       --font-sans: 'Plus Jakarta Sans', sans-serif;
-
       --radius-lg: 28px;
       --radius-md: 16px;
       --radius-sm: 12px;
       --radius-pill: 100px;
-
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-      --ease-soft: cubic-bezier(0.25, 0.1, 0.25, 1);
     }
 
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html {
-      scroll-behavior: smooth;
-      -webkit-text-size-adjust: 100%;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: var(--font-sans);
       background-color: var(--bg-obsidian);
@@ -70,9 +55,8 @@
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
-
-    img { max-width: 100%; display: block; }
     a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
     button { font-family: inherit; border: none; background: none; cursor: pointer; }
 
     /* ---------- Editorial Tag ---------- */
@@ -90,7 +74,7 @@
       -webkit-backdrop-filter: blur(6px);
     }
 
-    /* ---------- Floating Nav ---------- */
+    /* ---------- Navigation ---------- */
     .navbar-wrapper {
       position: fixed;
       top: 16px;
@@ -100,9 +84,7 @@
       display: flex;
       justify-content: center;
       padding: 0 16px;
-      transition: top 0.4s var(--ease-out);
     }
-
     nav {
       width: 100%;
       max-width: 1280px;
@@ -116,9 +98,7 @@
       justify-content: space-between;
       align-items: center;
       box-shadow: 0 12px 40px rgba(0,0,0,0.55);
-      transition: all 0.4s var(--ease-out);
     }
-
     .brand-logo {
       font-family: var(--font-serif);
       font-size: 1.25rem;
@@ -131,13 +111,11 @@
       background-clip: text;
       white-space: nowrap;
     }
-
     .nav-links {
       display: flex;
       gap: 2rem;
       list-style: none;
     }
-
     .nav-links a {
       font-size: 0.72rem;
       text-transform: uppercase;
@@ -146,16 +124,8 @@
       color: var(--platewhite);
       opacity: 0.72;
       transition: opacity 0.3s, color 0.3s;
-      position: relative;
     }
-
-    .nav-links a.active,
-    .nav-links a:hover,
-    .nav-links a:focus-visible {
-      opacity: 1;
-      color: var(--berrybloom);
-    }
-
+    .nav-links a:hover { opacity: 1; color: var(--berrybloom); }
     .nav-action .btn-book {
       border: 1px solid rgba(93, 118, 139, 0.6);
       color: var(--berrybloom);
@@ -169,7 +139,6 @@
       background: rgba(93, 118, 139, 0.1);
       white-space: nowrap;
     }
-
     .nav-action .btn-book:hover {
       background: var(--berrybloom);
       color: var(--bg-obsidian);
@@ -177,8 +146,6 @@
       box-shadow: 0 0 28px rgba(93, 118, 139, 0.35);
       transform: translateY(-1px);
     }
-
-    /* Mobile hamburger */
     .nav-toggle {
       display: none;
       width: 44px;
@@ -190,9 +157,7 @@
       justify-content: center;
       flex-direction: column;
       gap: 5px;
-      transition: background 0.3s;
     }
-
     .nav-toggle span {
       display: block;
       width: 18px;
@@ -201,19 +166,11 @@
       border-radius: 2px;
       transition: all 0.35s var(--ease-out);
     }
+    .nav-toggle.active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-toggle.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-toggle.active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-    .nav-toggle.active span:nth-child(1) {
-      transform: translateY(6.5px) rotate(45deg);
-    }
-    .nav-toggle.active span:nth-child(2) {
-      opacity: 0;
-      transform: scaleX(0);
-    }
-    .nav-toggle.active span:nth-child(3) {
-      transform: translateY(-6.5px) rotate(-45deg);
-    }
-
-    /* Mobile menu overlay */
+    /* Mobile Menu */
     .mobile-menu {
       position: fixed;
       inset: 0;
@@ -229,14 +186,11 @@
       visibility: hidden;
       transition: all 0.45s var(--ease-out);
       padding: 80px 24px 40px;
-      list-style: none;
     }
-
     .mobile-menu.open {
       opacity: 1;
       visibility: visible;
     }
-
     .mobile-menu a {
       font-family: var(--font-serif);
       font-size: clamp(1.8rem, 7vw, 2.6rem);
@@ -247,23 +201,17 @@
       transform: translateY(18px);
       transition: all 0.5s var(--ease-out);
     }
-
     .mobile-menu.open a {
       opacity: 1;
       transform: translateY(0);
     }
-
-    .mobile-menu.open li:nth-child(1) a { transition-delay: 0.08s; }
-    .mobile-menu.open li:nth-child(2) a { transition-delay: 0.14s; }
-    .mobile-menu.open li:nth-child(3) a { transition-delay: 0.20s; }
-    .mobile-menu.open li:nth-child(4) a { transition-delay: 0.26s; }
-    .mobile-menu.open li:nth-child(5) a { transition-delay: 0.32s; }
-
-    .mobile-menu a:hover,
-    .mobile-menu a.active {
-      color: var(--berrybloom);
-    }
-
+    .mobile-menu.open a:nth-child(1) { transition-delay: 0.08s; }
+    .mobile-menu.open a:nth-child(2) { transition-delay: 0.14s; }
+    .mobile-menu.open a:nth-child(3) { transition-delay: 0.20s; }
+    .mobile-menu.open a:nth-child(4) { transition-delay: 0.26s; }
+    .mobile-menu.open a:nth-child(5) { transition-delay: 0.32s; }
+    .mobile-menu.open a:nth-child(6) { transition-delay: 0.38s; }
+    .mobile-menu a:hover { color: var(--berrybloom); }
     .mobile-menu .btn-book-mobile {
       margin-top: 1.5rem;
       border: 1px solid var(--berrybloom);
@@ -277,53 +225,57 @@
       background: rgba(93, 118, 139, 0.12);
     }
 
-    /* ---------- Hero ---------- */
+    /* ---------- Page Hero ---------- */
     .page-hero {
       position: relative;
-      height: min(50vh, 420px);
-      margin: 12px;
+      height: 40vh;
+      min-height: 300px;
+      margin: 12px 12px 0;
       border-radius: var(--radius-lg);
       overflow: hidden;
       display: flex;
-      align-items: flex-end;
-      padding: 48px 5% 56px;
+      align-items: center;
+      justify-content: center;
       border: 1px solid rgba(255,255,255,0.06);
-      background-image: url('z4.jpg');
-      background-size: cover;
-      background-position: center 30%;
+      background: var(--bg-surface);
     }
-
+    .page-hero img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: contrast(1.05) brightness(0.5) saturate(0.9);
+    }
     .page-hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg,
-        rgba(17,20,28,0.2) 0%,
-        rgba(17,20,28,0.5) 50%,
-        rgba(17,20,28,0.92) 100%);
+      background: linear-gradient(135deg, rgba(17,20,28,0.7), rgba(40,55,74,0.8));
       z-index: 1;
     }
-
     .page-hero-content {
       position: relative;
       z-index: 2;
-      width: 100%;
-      max-width: 1280px;
-      margin: 0 auto;
+      text-align: center;
+      padding: 20px;
     }
-
-    .page-hero-title {
+    .page-hero-content h1 {
       font-family: var(--font-serif);
-      font-size: clamp(2.6rem, 6vw, 4.8rem);
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
       font-weight: 300;
-      line-height: 1;
-      letter-spacing: -0.02em;
       color: var(--platewhite);
-      margin-top: 12px;
+      letter-spacing: 0.02em;
+      margin-top: 10px;
+      text-shadow: 0 4px 30px rgba(0,0,0,0.4);
     }
-
-    .page-hero-title i {
-      font-style: italic;
-      color: #a8bdd4;
+    .page-hero-content p {
+      color: var(--yogurttint);
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-top: 8px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     /* ---------- Rooms Section ---------- */
@@ -337,217 +289,201 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
+      margin-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding-bottom: 22px;
+      gap: 20px;
       flex-wrap: wrap;
-      gap: 24px 32px;
-      margin-bottom: 56px;
     }
-
     .section-header h2 {
       font-family: var(--font-serif);
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-size: clamp(2.1rem, 4.5vw, 2.9rem);
       font-weight: 300;
-      color: var(--platewhite);
+      background: linear-gradient(135deg, var(--platewhite) 50%, var(--berrybloom));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       margin-top: 8px;
     }
-
-    .section-header .editorial-tag {
-      background: transparent;
-      padding: 0;
-      backdrop-filter: none;
-      border-bottom: 1px solid var(--berrybloom);
-      border-radius: 0;
+    .section-header .link-inquire {
       color: var(--berrybloom);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      border-bottom: 1px solid rgba(93,118,139,0.4);
+      padding-bottom: 4px;
+      transition: border-color 0.3s;
+    }
+    .section-header .link-inquire:hover {
+      border-color: var(--berrybloom);
     }
 
-    /* ---- Room Card with Gallery Scroll ---- */
+    /* Room Card */
     .room-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
       background: var(--bg-surface);
+      border: 1px solid rgba(255,255,255,0.06);
       border-radius: var(--radius-md);
       overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.06);
       margin-bottom: 40px;
-      transition: all 0.4s var(--ease-out);
+      transition: border-color 0.4s, box-shadow 0.4s;
     }
-
     .room-card:hover {
-      border-color: rgba(93, 118, 139, 0.35);
-      box-shadow: 0 20px 48px rgba(0,0,0,0.4);
+      border-color: rgba(93, 118, 139, 0.4);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
     }
 
-    .room-card:last-child { margin-bottom: 0; }
-
-    /* Gallery scroll */
-    .gallery-scroll {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      gap: 4px;
-      background: #0b0d12;
-      scroll-behavior: smooth;
+    .room-gallery {
+      position: relative;
+      overflow: hidden;
+      min-height: 400px;
     }
-
-    .gallery-scroll::-webkit-scrollbar {
-      height: 4px;
-    }
-
-    .gallery-scroll::-webkit-scrollbar-track {
-      background: rgba(255,255,255,0.04);
-    }
-
-    .gallery-scroll::-webkit-scrollbar-thumb {
-      background: var(--berrybloom);
-      border-radius: 4px;
-    }
-
-    .gallery-scroll img {
-      flex: 0 0 auto;
+    .room-gallery .main-img {
       width: 100%;
-      max-width: 480px;
-      height: 340px;
+      height: 100%;
       object-fit: cover;
-      scroll-snap-align: start;
-      filter: contrast(1.05) brightness(0.88);
-      transition: filter 0.4s;
+      transition: transform 0.6s var(--ease-out);
     }
-
-    .gallery-scroll img:hover {
-      filter: contrast(1.08) brightness(0.95);
+    .room-card:hover .room-gallery .main-img {
+      transform: scale(1.03);
     }
-
-    .room-info {
-      padding: 28px 28px 32px;
-    }
-
-    .room-info-top {
+    .room-gallery .thumbnails {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      right: 16px;
       display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-bottom: 12px;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 4px 0;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,0.2) transparent;
     }
-
-    .room-info-top h3 {
-      font-family: var(--font-serif);
-      font-size: 1.8rem;
-      font-weight: 400;
-      color: var(--platewhite);
+    .room-gallery .thumbnails::-webkit-scrollbar {
+      height: 3px;
     }
-
-    .room-info-top .price-tag {
-      font-family: var(--font-serif);
-      font-size: 1.3rem;
-      color: var(--berrybloom);
-      background: rgba(93,118,139,0.12);
-      padding: 4px 18px;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(93,118,139,0.2);
+    .room-gallery .thumbnails::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.25);
+      border-radius: 10px;
+    }
+    .room-gallery .thumbnails img {
+      width: 64px;
+      height: 48px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 2px solid rgba(255,255,255,0.15);
+      cursor: pointer;
+      transition: border-color 0.3s, opacity 0.3s;
+      flex-shrink: 0;
+    }
+    .room-gallery .thumbnails img:hover {
+      border-color: var(--berrybloom);
+      opacity: 0.9;
+    }
+    .room-gallery .thumbnails img.active {
+      border-color: var(--berrybloom);
+    }
+    .scroll-hint {
+      position: absolute;
+      bottom: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.5);
+      background: rgba(0,0,0,0.4);
+      padding: 4px 14px;
+      border-radius: 20px;
+      backdrop-filter: blur(4px);
       white-space: nowrap;
     }
 
-    .room-info-top .price-tag small {
-      font-size: 0.65rem;
-      font-family: var(--font-sans);
-      font-weight: 300;
-      color: var(--stemgrey);
+    .room-info {
+      padding: 36px 40px 40px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
-
-    .room-desc {
+    .room-info .room-name {
+      font-family: var(--font-serif);
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 300;
+      color: var(--platewhite);
+      margin-bottom: 4px;
+    }
+    .room-info .room-price {
+      font-size: 1.1rem;
+      color: var(--berrybloom);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      margin-bottom: 12px;
+    }
+    .room-info .room-desc {
       color: var(--text-muted);
       font-size: 0.92rem;
-      line-height: 1.8;
+      line-height: 1.7;
       margin-bottom: 16px;
-      max-width: 640px;
     }
-
-    .room-amenities {
+    .room-info .room-amenities {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px 14px;
-      margin-bottom: 18px;
+      gap: 8px 18px;
+      margin-bottom: 24px;
     }
-
-    .room-amenities span {
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--text-muted);
-      background: rgba(255,255,255,0.04);
-      padding: 5px 14px;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(255,255,255,0.05);
+    .room-info .room-amenities span {
+      font-size: 0.78rem;
+      color: var(--stemgrey);
+      letter-spacing: 0.04em;
     }
-
-    .room-amenities span i {
-      font-style: normal;
-      margin-right: 5px;
+    .room-info .room-amenities span::before {
+      content: "· ";
+      color: var(--berrybloom);
     }
-
+    .room-info .room-amenities span:first-child::before {
+      content: "";
+    }
     .room-actions {
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
     }
-
-    .btn-outline-sm {
+    .btn-primary {
       display: inline-block;
-      border: 1px solid rgba(93, 118, 139, 0.4);
-      padding: 9px 26px;
-      border-radius: var(--radius-pill);
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-weight: 600;
-      color: var(--berrybloom);
-      transition: all 0.3s var(--ease-out);
-      background: transparent;
-    }
-
-    .btn-outline-sm:hover {
       background: var(--berrybloom);
       color: var(--bg-obsidian);
-      border-color: var(--berrybloom);
-    }
-
-    .btn-solid-sm {
-      display: inline-block;
-      background: var(--azul);
-      color: var(--platewhite);
-      padding: 9px 26px;
+      padding: 12px 30px;
       border-radius: var(--radius-pill);
-      font-size: 0.65rem;
+      font-size: 0.7rem;
       text-transform: uppercase;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.16em;
       font-weight: 600;
-      transition: all 0.3s var(--ease-out);
+      transition: all 0.35s var(--ease-out);
+      border: none;
     }
-
-    .btn-solid-sm:hover {
-      background: var(--terra);
+    .btn-primary:hover {
+      background: var(--platewhite);
+      box-shadow: 0 8px 28px rgba(93,118,139,0.3);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(117,68,55,0.3);
     }
-
-    .scroll-hint {
-      font-size: 0.6rem;
+    .btn-outline {
+      display: inline-block;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: var(--text-muted);
+      padding: 12px 30px;
+      border-radius: var(--radius-pill);
+      font-size: 0.7rem;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--stemgrey);
-      padding: 0 28px 10px 28px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      letter-spacing: 0.16em;
+      font-weight: 500;
+      transition: all 0.35s var(--ease-out);
     }
-
-    .scroll-hint::after {
-      content: '→';
-      animation: slideArrow 1.8s ease-in-out infinite;
-    }
-
-    @keyframes slideArrow {
-      0%, 100% { transform: translateX(0); opacity: 0.5; }
-      50% { transform: translateX(8px); opacity: 1; }
+    .btn-outline:hover {
+      border-color: var(--berrybloom);
+      color: var(--platewhite);
+      background: rgba(93,118,139,0.08);
     }
 
     /* ---------- Footer ---------- */
@@ -557,7 +493,6 @@
       padding: 72px 5% 36px;
       color: var(--stemgrey);
     }
-
     .footer-grid {
       max-width: 1280px;
       margin: 0 auto;
@@ -567,7 +502,6 @@
       padding-bottom: 48px;
       border-bottom: 1px solid rgba(255,255,255,0.05);
     }
-
     .footer-brand h3 {
       font-family: var(--font-serif);
       font-size: 1.9rem;
@@ -577,20 +511,17 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
-
     .footer-brand p {
       color: var(--stemgrey);
       font-size: 0.9rem;
       max-width: 320px;
       line-height: 1.7;
     }
-
     .footer-contact p {
       color: var(--platewhite);
       margin-top: 6px;
       font-size: 0.95rem;
     }
-
     .footer-bottom {
       max-width: 1280px;
       margin: 32px auto 0;
@@ -605,66 +536,45 @@
     }
 
     /* ---------- Responsive ---------- */
+    @media (max-width: 1024px) {
+      .room-card {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      .room-gallery {
+        min-height: 320px;
+      }
+      .room-info {
+        padding: 28px 24px 32px;
+      }
+    }
     @media (max-width: 768px) {
       .navbar-wrapper { top: 12px; padding: 0 12px; }
-      nav {
-        padding: 10px 14px 10px 20px;
-        border-radius: 20px;
-      }
-      .nav-links,
-      .nav-action { display: none; }
+      nav { padding: 10px 14px 10px 20px; border-radius: 20px; }
+      .nav-links, .nav-action { display: none; }
       .nav-toggle { display: flex; }
 
-      .page-hero {
-        height: min(45vh, 340px);
-        margin: 8px;
-        border-radius: 20px;
-        padding: 32px 22px 36px;
-      }
+      .page-hero { height: 32vh; min-height: 240px; margin: 8px 8px 0; border-radius: 20px; }
+      .page-hero-content h1 { font-size: 2.2rem; }
 
-      .rooms-section { padding: 60px 22px 80px; }
+      .rooms-section { padding: 60px 20px 80px; }
+      .section-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .room-gallery { min-height: 260px; }
+      .room-gallery .thumbnails img { width: 48px; height: 36px; }
+      .room-actions { flex-direction: column; width: 100%; }
+      .room-actions .btn-primary, .room-actions .btn-outline { text-align: center; }
 
-      .section-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
-      }
-
-      .gallery-scroll img {
-        max-width: 320px;
-        height: 260px;
-      }
-
-      .room-info-top {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .room-info-top h3 { font-size: 1.5rem; }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 36px;
-      }
+      .footer-grid { grid-template-columns: 1fr; gap: 36px; }
       footer { padding: 60px 22px 32px; }
     }
-
     @media (max-width: 480px) {
-      .page-hero-title { font-size: 2.2rem; }
       .brand-logo { font-size: 1.1rem; letter-spacing: 0.18em; }
-      .gallery-scroll img {
-        max-width: 280px;
-        height: 220px;
-      }
+      .page-hero-content h1 { font-size: 1.8rem; }
+      .room-info .room-name { font-size: 1.4rem; }
+      .room-gallery { min-height: 200px; }
     }
-
-    /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-      }
-      .scroll-hint::after { animation: none; }
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
   </style>
 </head>
@@ -674,177 +584,178 @@
   <div class="navbar-wrapper">
     <nav>
       <a href="index.html" class="brand-logo">Oxygen Hotel</a>
-
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="rooms.html" class="active">Rooms</a></li>
+        <li><a href="rooms.html" style="opacity:1; color:var(--berrybloom);">Rooms</a></li>
         <li><a href="rules.html">Rules</a></li>
-        <li><a href="comtact.html">Contact</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
-
       <div class="nav-action">
         <a href="tel:08147652644" class="btn-book">Reserve Stay</a>
       </div>
-
       <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
       </button>
     </nav>
   </div>
 
   <!-- Mobile Menu -->
-  <ul class="mobile-menu" id="mobileMenu">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="rooms.html" class="active">Rooms</a></li>
-    <li><a href="rules.html">Rules</a></li>
-    <li><a href="comtact.html">Contact</a></li>
-    <li><a href="tel:08147652644" class="btn-book-mobile">Reserve Stay</a></li>
-  </ul>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="rooms.html">Rooms</a>
+    <a href="rules.html">Rules</a>
+    <a href="contact.html">Contact</a>
+    <a href="tel:08147652644" class="btn-book-mobile">Reserve Stay</a>
+  </div>
 
   <!-- Page Hero -->
-  <header class="page-hero">
+  <section class="page-hero">
+    <img src="z1.jpg" alt="Oxygen Hotel Rooms" loading="lazy" />
     <div class="page-hero-overlay"></div>
     <div class="page-hero-content">
-      <span class="editorial-tag" style="background:rgba(17,20,28,0.5); backdrop-filter:blur(8px);">Accommodations</span>
-      <h1 class="page-hero-title">Spaces that <i>breathe</i></h1>
+      <span class="editorial-tag">Accommodations</span>
+      <h1>Our Rooms <i>&amp;</i> Suites</h1>
+      <p>Curated spaces designed for rest, reflection, and refined living.</p>
     </div>
-  </header>
+  </section>
 
-  <!-- Rooms Section with Gallery Scroll -->
+  <!-- Rooms Section -->
   <section class="rooms-section">
     <div class="section-header">
       <div>
-        <span class="editorial-tag">Signature Suites</span>
-        <h2>Our Rooms & Suites</h2>
+        <span class="editorial-tag">Stay With Us</span>
+        <h2>Choose Your Sanctuary</h2>
       </div>
-      <a href="tel:08147652644" class="editorial-tag" style="text-decoration:none; border-bottom:1px solid var(--berrybloom);">Inquire Availability →</a>
+      <a href="tel:08147652644" class="link-inquire">Inquire Availability →</a>
     </div>
 
-    <!-- Room 1: Studio -->
+    <!-- Studio Room -->
     <div class="room-card">
-      <div class="gallery-scroll">
-        <img src="z5.jpg" alt="Studio Room" loading="lazy">
-        <img src="z1.jpg" alt="Studio Room Bath" loading="lazy">
-        <img src="z10.jpg" alt="Studio Room View" loading="lazy">
-      </div>
-      <div class="scroll-hint">Scroll to explore</div>
-      <div class="room-info">
-        <div class="room-info-top">
-          <h3>Studio Room</h3>
-          <span class="price-tag">₦30,000 <small>/ night</small></span>
+      <div class="room-gallery">
+        <img class="main-img" id="studioMain" src="z5.jpg" alt="Studio Room" loading="lazy" />
+        <div class="thumbnails" id="studioThumbs">
+          <img src="z5.jpg" alt="Studio Room" data-target="z5.jpg" class="active" />
+          <img src="z9.jpg" alt="Studio Room Bath" data-target="z9.jpg" />
+          <img src="z1.jpg" alt="Studio Room View" data-target="z1.jpg" />
         </div>
+        <span class="scroll-hint">Scroll to explore</span>
+      </div>
+      <div class="room-info">
+        <h3 class="room-name">Studio Room</h3>
+        <div class="room-price">₦30,000 / night</div>
         <p class="room-desc">Cozy & essential comfort with natural light, bespoke furnishings, and a private balcony overlooking the courtyard.</p>
         <div class="room-amenities">
-          <span>🛏️ 1 Queen</span>
-          <span>📶 Wi-Fi</span>
-          <span>🛎️ Room Service</span>
-          <span>📺 Smart TV</span>
+          <span>1 Queen</span>
+          <span>Wi-Fi</span>
+          <span>Room Service</span>
+          <span>Smart TV</span>
         </div>
         <div class="room-actions">
-          <a href="tel:08147652644" class="btn-solid-sm">Book Now</a>
-          <a href="#" class="btn-outline-sm">View Details</a>
+          <a href="tel:08147652644" class="btn-primary">Book Now</a>
+          <button class="btn-outline" onclick="alert('View details for Studio Room')">View Details</button>
         </div>
       </div>
     </div>
 
-    <!-- Room 2: Deluxe -->
+    <!-- Deluxe Room -->
     <div class="room-card">
-      <div class="gallery-scroll">
-        <img src="z9.jpg" alt="Deluxe Room" loading="lazy">
-        <img src="z11.jpg" alt="Deluxe Room Living" loading="lazy">
-        <img src="z3.jpg" alt="Deluxe Room Bath" loading="lazy">
-        <img src="z4.jpg" alt="Deluxe Room View" loading="lazy">
-      </div>
-      <div class="scroll-hint">Scroll to explore</div>
-      <div class="room-info">
-        <div class="room-info-top">
-          <h3>Deluxe Room</h3>
-          <span class="price-tag">₦40,000 <small>/ night</small></span>
+      <div class="room-gallery">
+        <img class="main-img" id="deluxeMain" src="z9.jpg" alt="Deluxe Room" loading="lazy" />
+        <div class="thumbnails" id="deluxeThumbs">
+          <img src="z9.jpg" alt="Deluxe Room" data-target="z9.jpg" class="active" />
+          <img src="z3.jpg" alt="Deluxe Room Living" data-target="z3.jpg" />
+          <img src="z11.jpg" alt="Deluxe Room Bath" data-target="z11.jpg" />
+          <img src="z10.jpg" alt="Deluxe Room View" data-target="z10.jpg" />
         </div>
+        <span class="scroll-hint">Scroll to explore</span>
+      </div>
+      <div class="room-info">
+        <h3 class="room-name">Deluxe Room</h3>
+        <div class="room-price">₦40,000 / night</div>
         <p class="room-desc">Spacious sanctuary with floor-to-ceiling windows, a dedicated workspace, and a luxurious rain shower.</p>
         <div class="room-amenities">
-          <span>🛏️ 1 King</span>
-          <span>📶 Wi-Fi</span>
-          <span>🛎️ Room Service</span>
-          <span>🏊 Pool Access</span>
-          <span>☕ Coffee Maker</span>
+          <span>1 King</span>
+          <span>Wi-Fi</span>
+          <span>Room Service</span>
+          <span>Pool Access</span>
+          <span>Coffee Maker</span>
         </div>
         <div class="room-actions">
-          <a href="tel:08147652644" class="btn-solid-sm">Book Now</a>
-          <a href="#" class="btn-outline-sm">View Details</a>
+          <a href="tel:08147652644" class="btn-primary">Book Now</a>
+          <button class="btn-outline" onclick="alert('View details for Deluxe Room')">View Details</button>
         </div>
       </div>
     </div>
 
-    <!-- Room 3: Executive Suite -->
+    <!-- Executive Suite -->
     <div class="room-card">
-      <div class="gallery-scroll">
-        <img src="z3.jpg" alt="Executive Suite" loading="lazy">
-        <img src="z10.jpg" alt="Executive Suite Living" loading="lazy">
-        <img src="z1.jpg" alt="Executive Suite Bath" loading="lazy">
-        <img src="z9.jpg" alt="Executive Suite View" loading="lazy">
-      </div>
-      <div class="scroll-hint">Scroll to explore</div>
-      <div class="room-info">
-        <div class="room-info-top">
-          <h3>Executive Suite</h3>
-          <span class="price-tag">₦50,000 <small>/ night</small></span>
+      <div class="room-gallery">
+        <img class="main-img" id="executiveMain" src="z3.jpg" alt="Executive Suite" loading="lazy" />
+        <div class="thumbnails" id="executiveThumbs">
+          <img src="z3.jpg" alt="Executive Suite" data-target="z3.jpg" class="active" />
+          <img src="z4.jpg" alt="Executive Suite Living" data-target="z4.jpg" />
+          <img src="z11.jpg" alt="Executive Suite Bath" data-target="z11.jpg" />
+          <img src="z1.jpg" alt="Executive Suite View" data-target="z1.jpg" />
         </div>
+        <span class="scroll-hint">Scroll to explore</span>
+      </div>
+      <div class="room-info">
+        <h3 class="room-name">Executive Suite</h3>
+        <div class="room-price">₦50,000 / night</div>
         <p class="room-desc">Premium living with panoramic city views, a separate living area, and a private terrace.</p>
         <div class="room-amenities">
-          <span>🛏️ 1 King</span>
-          <span>📶 Wi-Fi</span>
-          <span>🛎️ 24/7 Service</span>
-          <span>🏊 Pool Access</span>
-          <span>🍸 Mini Bar</span>
-          <span>🧖 Spa Access</span>
+          <span>1 King</span>
+          <span>Wi-Fi</span>
+          <span>24/7 Service</span>
+          <span>Pool Access</span>
+          <span>Mini Bar</span>
+          <span>Spa Access</span>
         </div>
         <div class="room-actions">
-          <a href="tel:08147652644" class="btn-solid-sm">Book Now</a>
-          <a href="#" class="btn-outline-sm">View Details</a>
+          <a href="tel:08147652644" class="btn-primary">Book Now</a>
+          <button class="btn-outline" onclick="alert('View details for Executive Suite')">View Details</button>
         </div>
       </div>
     </div>
 
-    <!-- Room 4: Executive Super Suite -->
+    <!-- Executive Super Suite -->
     <div class="room-card">
-      <div class="gallery-scroll">
-        <img src="z11.jpg" alt="Executive Super Suite" loading="lazy">
-        <img src="z4.jpg" alt="Super Suite Living" loading="lazy">
-        <img src="z5.jpg" alt="Super Suite Bath" loading="lazy">
-        <img src="z3.jpg" alt="Super Suite View" loading="lazy">
-        <img src="z1.jpg" alt="Super Suite Detail" loading="lazy">
-      </div>
-      <div class="scroll-hint">Scroll to explore</div>
-      <div class="room-info">
-        <div class="room-info-top">
-          <h3>Executive Super Suite</h3>
-          <span class="price-tag" style="background:rgba(40,55,74,0.3); border-color:var(--azul);">₦60,000 <small>/ night</small></span>
+      <div class="room-gallery">
+        <img class="main-img" id="superMain" src="z11.jpg" alt="Executive Super Suite" loading="lazy" />
+        <div class="thumbnails" id="superThumbs">
+          <img src="z11.jpg" alt="Super Suite" data-target="z11.jpg" class="active" />
+          <img src="z10.jpg" alt="Super Suite Living" data-target="z10.jpg" />
+          <img src="z3.jpg" alt="Super Suite Bath" data-target="z3.jpg" />
+          <img src="z9.jpg" alt="Super Suite View" data-target="z9.jpg" />
+          <img src="z5.jpg" alt="Super Suite Detail" data-target="z5.jpg" />
         </div>
+        <span class="scroll-hint">Scroll to explore</span>
+      </div>
+      <div class="room-info">
+        <h3 class="room-name">Executive Super Suite</h3>
+        <div class="room-price">₦60,000 / night</div>
         <p class="room-desc">Ultimate luxury experience with two king bedrooms, a private plunge pool, and butler service.</p>
         <div class="room-amenities">
-          <span>🛏️ 2 Kings</span>
-          <span>📶 Premium Wi-Fi</span>
-          <span>🛎️ Butler Service</span>
-          <span>🏊 Private Pool</span>
-          <span>🍸 Full Bar</span>
-          <span>🧖 Spa Access</span>
-          <span>🚗 Valet</span>
+          <span>2 Kings</span>
+          <span>Premium Wi-Fi</span>
+          <span>Butler Service</span>
+          <span>Private Pool</span>
+          <span>Full Bar</span>
+          <span>Spa Access</span>
+          <span>Valet</span>
         </div>
         <div class="room-actions">
-          <a href="tel:08147652644" class="btn-solid-sm">Book Now</a>
-          <a href="#" class="btn-outline-sm">View Details</a>
+          <a href="tel:08147652644" class="btn-primary">Book Now</a>
+          <button class="btn-outline" onclick="alert('View details for Executive Super Suite')">View Details</button>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer>
+  <footer id="location">
     <div class="footer-grid">
       <div class="footer-brand">
         <h3>OXYGEN HOTEL</h3>
@@ -876,9 +787,8 @@
 
     toggle.addEventListener('click', () => {
       const isOpen = mobileMenu.classList.contains('open');
-      if (isOpen) {
-        closeMenu();
-      } else {
+      if (isOpen) closeMenu();
+      else {
         toggle.classList.add('active');
         toggle.setAttribute('aria-expanded', 'true');
         mobileMenu.classList.add('open');
@@ -886,12 +796,30 @@
       }
     });
 
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', closeMenu);
+    mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+
+    // Gallery thumbnail switcher
+    document.querySelectorAll('.room-gallery').forEach(gallery => {
+      const mainImg = gallery.querySelector('.main-img');
+      const thumbs = gallery.querySelectorAll('.thumbnails img');
+
+      thumbs.forEach(thumb => {
+        thumb.addEventListener('click', function() {
+          // Update main image
+          mainImg.src = this.dataset.target;
+          // Update active state
+          thumbs.forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
     });
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeMenu();
+    // Lucide icons (if any)
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
     });
   </script>
 </body>
