@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OXYGEN HOTEL · Rules & Policies</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="z1.jpg">
+  <link rel="apple-touch-icon" sizes="180x180" href="z1.jpg">
+  <meta name="msapplication-TileColor" content="#28374A">
+  <meta name="theme-color" content="#11141C">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* ---------- Reset & Variables ---------- */
+    :root {
+      --areia: #D3C7AD;
+      --azul: #28374A;
+      --terra: #754437;
+      --verde: #6B6751;
+      --ocean-deep: #5D768B;
+      --warm-sand: #C8B39B;
+      --ivory: #F8EFE5;
+      --berrybloom: var(--ocean-deep);
+      --stemgrey: #6E6F73;
+      --yogurttint: var(--warm-sand);
+      --platewhite: var(--ivory);
+      --bg-obsidian: #11141C;
+      --bg-surface: #1B1F2A;
+      --text-light: #F0F2F5;
+      --text-muted: #949AA8;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      --radius-lg: 28px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+      --radius-pill: 100px;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-obsidian);
+      color: var(--text-light);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ---------- Editorial Tag ---------- */
+    .editorial-tag {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-weight: 600;
+      color: var(--berrybloom);
+      background: rgba(93, 118, 139, 0.18);
+      padding: 0.35rem 0.9rem;
+      border-radius: var(--radius-pill);
+      display: inline-block;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    /* ---------- Navigation (same as homepage) ---------- */
+    .navbar-wrapper {
+      position: fixed;
+      top: 16px;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      padding: 0 16px;
+    }
+    nav {
+      width: 100%;
+      max-width: 1280px;
+      background: rgba(17, 20, 28, 0.78);
+      backdrop-filter: blur(24px) saturate(1.4);
+      -webkit-backdrop-filter: blur(24px) saturate(1.4);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: var(--radius-pill);
+      padding: 12px 20px 12px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.55);
+    }
+    .brand-logo {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, var(--platewhite) 20%, var(--berrybloom) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 500;
+      color: var(--platewhite);
+      opacity: 0.72;
+      transition: opacity 0.3s, color 0.3s;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--berrybloom); }
+    .nav-action .btn-book {
+      border: 1px solid rgba(93, 118, 139, 0.6);
+      color: var(--berrybloom);
+      padding: 9px 22px;
+      border-radius: var(--radius-pill);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 600;
+      transition: all 0.35s var(--ease-out);
+      background: rgba(93, 118, 139, 0.1);
+      white-space: nowrap;
+    }
+    .nav-action .btn-book:hover {
+      background: var(--berrybloom);
+      color: var(--bg-obsidian);
+      border-color: var(--berrybloom);
+      box-shadow: 0 0 28px rgba(93, 118, 139, 0.35);
+      transform: translateY(-1px);
+    }
+    .nav-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 18px;
+      height: 1.5px;
+      background: var(--platewhite);
+      border-radius: 2px;
+      transition: all 0.35s var(--ease-out);
+    }
+    .nav-toggle.active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-toggle.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-toggle.active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(17, 20, 28, 0.97);
+      backdrop-filter: blur(30px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2.2rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.45s var(--ease-out);
+      padding: 80px 24px 40px;
+    }
+    .mobile-menu.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .mobile-menu a {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 7vw, 2.6rem);
+      font-weight: 300;
+      color: var(--platewhite);
+      letter-spacing: 0.04em;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: all 0.5s var(--ease-out);
+    }
+    .mobile-menu.open a {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .mobile-menu.open a:nth-child(1) { transition-delay: 0.08s; }
+    .mobile-menu.open a:nth-child(2) { transition-delay: 0.14s; }
+    .mobile-menu.open a:nth-child(3) { transition-delay: 0.20s; }
+    .mobile-menu.open a:nth-child(4) { transition-delay: 0.26s; }
+    .mobile-menu.open a:nth-child(5) { transition-delay: 0.32s; }
+    .mobile-menu.open a:nth-child(6) { transition-delay: 0.38s; }
+    .mobile-menu a:hover { color: var(--berrybloom); }
+    .mobile-menu .btn-book-mobile {
+      margin-top: 1.5rem;
+      border: 1px solid var(--berrybloom);
+      color: var(--berrybloom);
+      padding: 14px 36px;
+      border-radius: var(--radius-pill);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-weight: 600;
+      background: rgba(93, 118, 139, 0.12);
+    }
+
+    /* ---------- Page Hero (rules) ---------- */
+    .page-hero {
+      position: relative;
+      height: 40vh;
+      min-height: 320px;
+      margin: 12px 12px 0;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: var(--bg-surface);
+    }
+    .page-hero img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: contrast(1.05) brightness(0.5) saturate(0.9);
+    }
+    .page-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(17,20,28,0.7), rgba(40,55,74,0.8));
+      z-index: 1;
+    }
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 20px;
+    }
+    .page-hero-content h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      font-weight: 300;
+      color: var(--platewhite);
+      letter-spacing: 0.02em;
+      margin-top: 10px;
+      text-shadow: 0 4px 30px rgba(0,0,0,0.4);
+    }
+    .page-hero-content p {
+      color: var(--yogurttint);
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-top: 8px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ---------- Rules Grid ---------- */
+    .rules-section {
+      padding: 80px 5% 100px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+      margin-top: 40px;
+    }
+    .rule-card {
+      background: var(--bg-surface);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius-md);
+      padding: 32px 28px;
+      transition: all 0.4s var(--ease-out);
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+    .rule-card:hover {
+      border-color: rgba(93, 118, 139, 0.5);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    .rule-icon {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(93, 118, 139, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--berrybloom);
+    }
+    .rule-icon i {
+      width: 22px;
+      height: 22px;
+    }
+    .rule-content h3 {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--platewhite);
+      margin-bottom: 4px;
+    }
+    .rule-content p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .rule-content .highlight {
+      color: var(--berrybloom);
+      font-weight: 500;
+    }
+
+    /* ---------- Important Info Banner ---------- */
+    .info-banner {
+      background: var(--bg-surface);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding: 40px 5%;
+      margin-top: 20px;
+    }
+    .info-banner-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .info-item i {
+      color: var(--berrybloom);
+      width: 24px;
+      height: 24px;
+    }
+    .info-item span {
+      font-size: 0.9rem;
+      color: var(--platewhite);
+    }
+    .info-item span strong {
+      font-weight: 600;
+      color: var(--berrybloom);
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      background: var(--bg-surface);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 72px 5% 36px;
+      color: var(--stemgrey);
+    }
+    .footer-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer-brand h3 {
+      font-family: var(--font-serif);
+      font-size: 1.9rem;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--platewhite) 40%, var(--berrybloom));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .footer-brand p {
+      color: var(--stemgrey);
+      font-size: 0.9rem;
+      max-width: 320px;
+      line-height: 1.7;
+    }
+    .footer-contact p {
+      color: var(--platewhite);
+      margin-top: 6px;
+      font-size: 0.95rem;
+    }
+    .footer-bottom {
+      max-width: 1280px;
+      margin: 32px auto 0;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--stemgrey);
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 768px) {
+      .navbar-wrapper { top: 12px; padding: 0 12px; }
+      nav { padding: 10px 14px 10px 20px; border-radius: 20px; }
+      .nav-links, .nav-action { display: none; }
+      .nav-toggle { display: flex; }
+
+      .page-hero { height: 32vh; min-height: 260px; margin: 8px 8px 0; border-radius: 20px; }
+      .page-hero-content h1 { font-size: 2.2rem; }
+
+      .rules-section { padding: 60px 20px 80px; }
+      .rules-grid { grid-template-columns: 1fr; }
+
+      .info-banner-inner { flex-direction: column; gap: 16px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+      footer { padding: 60px 22px 32px; }
+    }
+    @media (max-width: 480px) {
+      .brand-logo { font-size: 1.1rem; letter-spacing: 0.18em; }
+      .page-hero-content h1 { font-size: 1.8rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Navigation -->
+  <div class="navbar-wrapper">
+    <nav>
+      <a href="index.html" class="brand-logo">Oxygen Hotel</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="rooms.html">Rooms</a></li>
+        <li><a href="rules.html" style="opacity:1; color:var(--berrybloom);">Rules</a></li>
+        <li><a href="c">Contact</a></li>
+      </ul>
+      <div class="nav-action">
+        <a href="tel:08147652644" class="btn-book">Reserve Stay</a>
+      </div>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="rooms.html">Rooms</a>
+    <a href="rules.html">Rules</a>
+    <a href="comtact.html">Contact</a>
+    <a href="tel:08147652644" class="btn-book-mobile">Reserve Stay</a>
+  </div>
+
+  
+
+  <!-- Rules Grid -->
+  <section class="rules-section">
+    <div style="text-align:center; margin-bottom:20px;">
+      <span class="editorial-tag">Guidelines</span>
+      <h2 style="font-family:var(--font-serif); font-size:clamp(1.8rem,3.5vw,2.6rem); font-weight:300; margin-top:10px; color:var(--platewhite);">Our <i style="color:var(--berrybloom);">Commitment</i> to Comfort</h2>
+    </div>
+
+    <div class="rules-grid">
+      <!-- No Smoking -->
+      <div class="rule-card">
+        <div class="rule-icon"><i data-lucide="smoke"></i></div>
+        <div class="rule-content">
+          <h3>No Smoking in Rooms</h3>
+          <p>For the comfort of all guests, smoking is strictly prohibited inside the rooms and suites. Designated outdoor smoking areas are available.</p>
+        </div>
+      </div>
+
+      <!-- No Pets -->
+      <div class="rule-card">
+        <div class="rule-icon"><i data-lucide="paw-print"></i></div>
+        <div class="rule-content">
+          <h3>No Pets Allowed</h3>
+          <p>We regret that we do not accommodate pets, with the exception of certified service animals. Please notify us in advance.</p>
+        </div>
+      </div>
+
+      <!-- Check-in / Check-out -->
+      <div class="rule-card">
+        <div class="rule-icon"><i data-lucide="key"></i></div>
+        <div class="rule-content">
+          <h3>Check-in &amp; Check-out</h3>
+          <p><span class="highlight">Check-in:</span> from 12:00 PM (Noon) · <span class="highlight">Check-out:</span> by 11:00 AM. Early check-in and late check-out are subject to availability.</p>
+        </div>
+      </div>
+
+      <!-- Quiet Hours -->
+      <div class="rule-card">
+        <div class="rule-icon"><i data-lucide="volume-x"></i></div>
+        <div class="rule-content">
+          <h3>Quiet Hours</h3>
+          <p>To preserve a tranquil atmosphere, we observe quiet hours from <span class="highlight">10:00 PM to 7:00 AM</span>. Please keep noise to a minimum.</p>
+        </div>
+      </div>
+
+      <!-- Visitors -->
+      <div class="rule-card">
+        <div class="rule-icon"><i data-lucide="users"></i></div>
+        <div class="rule-content">
+          <h3>Visitors &amp; Guests</h3>
+          <p>All visitors must register at reception. Unregistered guests are not permitted after 10:00 PM. Maximum occupancy per room applies.</p>
+        </div>
+      </div>
+
+      <!-- Damages & Cleaning -->
+      <div class="rule-card">
+        <div class="rule-icon"><i data-lucide="sparkles"></i></div>
+        <div class="rule-content">
+          <h3>Damages &amp; Cleaning</h3>
+          <p>We kindly ask that you treat our spaces with care. Any damage or excessive cleaning required may incur a fee. Report any issues immediately.</p>
+        </div>
+      </div>
+
+      <!-- Pool & Facilities -->
+      <div class="rule-card">
+        <div class="rule-icon"><i data-lucide="droplets"></i></div>
+        <div class="rule-content">
+          <h3>Pool &amp; Facilities</h3>
+          <p>Swimming pool and gym are available from <span class="highlight">7:00 AM to 9:00 PM</span>. Appropriate swimwear and footwear are required.</p>
+        </div>
+      </div>
+
+      <!-- Parking -->
+      <div class="rule-card">
+        <div class="rule-icon"><i data-lucide="parking-circle"></i></div>
+        <div class="rule-content">
+          <h3>Parking</h3>
+          <p>Complimentary parking is provided for registered guests. Vehicles are parked at owner’s risk. Please display your parking pass.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="location">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>OXYGEN HOTEL</h3>
+        <p>No. 3 ACL Close, Off 6th Avenue, Opposite Galadima Police Station, Abuja.</p>
+      </div>
+      <div class="footer-contact">
+        <span class="editorial-tag">Direct Inquiries</span>
+        <p>+234 (0) 814 765 2644</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Oxygen Hotel & Spa</span>
+      <span>Architectural Photography by Phase One</span>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const toggle = document.querySelector('.nav-toggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+
+    function closeMenu() {
+      toggle.classList.remove('active');
+      toggle.setAttribute('aria-expanded', 'false');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    toggle.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.contains('open');
+      if (isOpen) closeMenu();
+      else {
+        toggle.classList.add('active');
+        toggle.setAttribute('aria-expanded', 'true');
+        mobileMenu.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+
+    mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+
+    // Lucide icons
+    document.addEventListener('DOMContentLoaded', function() {
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
